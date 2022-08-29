@@ -1,5 +1,5 @@
 //time: O(n)
-//space: O(1)
+//space: O(n)
 Node *merge(Node* l1,Node* l2)
 {
     Node* head=new Node(0);
