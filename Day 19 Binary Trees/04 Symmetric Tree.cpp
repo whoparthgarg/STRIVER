@@ -1,32 +1,29 @@
 //time: O(n)
 //space: O(n)
-class Solution {
-public:
-    bool check(TreeNode* r1,TreeNode* r2)
+bool check(TreeNode* p,TreeNode* q)
+{
+    if(p==NULL and q==NULL)
     {
-        if(r1==NULL and r2==NULL)
-        {
-            return true;
-        }
-        
-        if(r1==NULL or r2==NULL)
-        {
-            return false;
-        }
-        
-        if(r1->val!=r2->val)
-        {
-            return false;
-        }
-        
-        return (check(r1->right,r2->left) and check(r1->left,r2->right));
+        return true;
     }
-    bool isSymmetric(TreeNode* root) {
-        if(root==NULL)
-        {
-            return true;
-        }
-        
-        return check(root->left,root->right);
+    
+    if(p==NULL or q==NULL)
+    {
+        return false;
     }
-};
+    
+    if(p->val!=q->val)
+    {
+        return false;
+    }
+    
+    return check(p->left,q->right) and check(p->right,q->left);
+}
+bool isSymmetric(TreeNode* root) {
+    if(root==NULL)
+    {
+        return true;
+    }
+    
+    return check(root->left,root->right);
+}

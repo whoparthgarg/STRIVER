@@ -1,26 +1,20 @@
 //time: O(n)
 //space: O(1)
-class Solution {
-public:
-    void flatten(TreeNode* root) {
-        while(root)
+void flatten(TreeNode* root) 
+{
+    while(root)
+    {
+        if(root->left)
         {
-            if(root->left and root->right)
+            TreeNode* temp=root->left;
+            while(temp->right)
             {
-                TreeNode* temp=root->left;
-                while(temp->right)
-                {
-                    temp=temp->right;
-                }
-                temp->right=root->right;
+                temp=temp->right;
             }
-            
-            if(root->left)
-            {
-                root->right=root->left;
-            }
+            temp->right=root->right;
+            root->right=root->left;
             root->left=NULL;
-            root=root->right;
         }
+        root=root->right;
     }
-};
+}

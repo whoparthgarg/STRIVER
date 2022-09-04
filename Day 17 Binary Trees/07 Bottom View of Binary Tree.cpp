@@ -1,24 +1,35 @@
 //time: O(n)
 //space: O(n)
-vector <int> bottomView(Node *root) 
+vector<int> bottomView(Node *root) 
 {
-    // Your Code Here
-    vector<int>v;
-    queue<pair<Node*,int>>q;
-    map<int,int>mp;
+    vector<int> res;
+    map<int,int> m;
+    queue<pair<Node*,int>> q;
     q.push({root,0});
-    while(!q.empty()){
-        auto p=q.front();
+    
+    while(q.size())
+    {
+        auto temp=q.front();
         q.pop();
-        Node*temp=p.first;
-        int level=p.second;
-        mp[level]=temp->data;
-        if(temp->left)q.push({temp->left,level-1});
-        if(temp->right)q.push({temp->right,level+1});
+        
+        Node* node=temp.first;
+        int level=temp.second;
+        m[level]=node->data;
+        
+        if(node->left)
+        {
+            q.push({node->left,level-1});
+        }
+        if(node->right)
+        {
+            q.push({node->right,level+1});
+        }
     }
     
-    for(auto it:mp){
-        v.push_back(it.second);
+    for(auto x:m)
+    {
+        res.push_back(x.second);
     }
-    return v;
+    
+    return res;
 }

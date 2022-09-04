@@ -29,29 +29,49 @@ int isSumProperty(Node *root)
 }
 
 //real code
-void reorder(BinaryTreeNode<int> * root) {
-  if (root == NULL) return;
-  int child = 0;
-  if (root -> left) {
-    child += root -> left -> data;
-  }
-  if (root -> right) {
-    child += root -> right -> data;
-  }
-
-  if (child < root -> data) {
-    if (root -> left) root -> left -> data = root -> data;
-    else if (root -> right) root -> right -> data = root -> data;
-  }
-
-  reorder(root -> left);
-  reorder(root -> right);
-
-  int tot = 0;
-  if (root -> left) tot += root -> left -> data;
-  if (root -> right) tot += root -> right -> data;
-  if (root -> left || root -> right) root -> data = tot;
-}
-void changeTree(BinaryTreeNode < int > * root) {
-    reorder(root);
+void changeTree(BinaryTreeNode<int>* root) 
+{
+    if(root==NULL)
+    {
+        return ;
+    }
+    
+    int sum=0;
+    if(root->left)
+    {
+        sum+=root->left->data;
+    }
+    if(root->right)
+    {
+        sum+=root->right->data;
+    }
+    
+    if(sum<root->data)
+    {
+        if(root->left)
+        {
+            root->left->data=root->data;
+        }
+        else if(root->right)
+        {
+            root->right->data=root->data;
+        } 
+    }
+    
+    changeTree(root->left);
+    changeTree(root->right);
+    
+    int total=0;
+    if(root->left)
+    {
+        total+=root->left->data;
+    }
+    if(root->right)
+    {
+        total+=root->right->data;
+    }
+    if(root->left or root->right)
+    {
+        root->data=total;
+    }
 }  
