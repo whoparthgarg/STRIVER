@@ -33,14 +33,19 @@ int findDuplicate(vector<int>& nums)
     {
         slow=nums[slow];
         fast=nums[nums[fast]];
+        
+        if(slow==fast)
+        {
+            slow=0;
+            while(slow!=fast)
+            {
+                slow=nums[slow];
+                fast=nums[fast];
+            }
+            
+            return slow;
+        }
     }
     
-    fast=0;
-    while(slow!=fast)
-    {
-        slow=nums[slow];
-        fast=nums[fast];
-    }
-    
-    return slow;
+    return nums[0];
 }
