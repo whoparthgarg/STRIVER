@@ -23,3 +23,45 @@ Node* copyRandomList(Node* head)
 
     return res;
 }
+
+//time: O(n)
+//space: O(1)
+Node* copyRandomList(Node* head) {
+        //part1: duplicate nodes
+        Node* curr=head;
+        while(curr)
+        {
+            Node* new_node=new Node(curr->val);
+            Node* next_node=curr->next;
+            new_node->next=next_node;
+            curr->next=new_node;
+            curr=curr->next->next;
+        }
+              
+        //part2: change random pointers
+        curr=head;
+        while(curr)
+        {
+            if(curr->random)
+            {
+                curr->next->random=curr->random->next;
+            }
+            curr=curr->next->next;
+        }
+               
+        //part3: separate lists
+        Node* new_head=new Node(INT_MIN);
+        Node* new_curr=new_head;
+        Node* fast;
+        curr=head;
+        while(curr)
+        {
+            fast=curr->next->next;
+            new_curr->next=curr->next;
+            curr->next=fast;
+            new_curr=new_curr->next;
+            curr=fast;
+        }
+        
+        return new_head->next;
+    }
