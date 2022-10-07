@@ -26,9 +26,9 @@ ListNode* reverseList(ListNode* head)
         return head;
     }
     
-    ListNode* nextNode=reverseList(head->next);
+    ListNode* newHead=reverseList(head->next);
     head->next->next=head;
     head->next=NULL;
     
-    return nextNode;
+    return newHead;
 }
