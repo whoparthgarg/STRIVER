@@ -31,13 +31,13 @@ Node* copyRandomList(Node* head) {
         Node* curr=head;
         while(curr)
         {
-            Node* new_node=new Node(curr->val);
-            Node* next_node=curr->next;
-            new_node->next=next_node;
-            curr->next=new_node;
+            Node* newNode=new Node(curr->val);
+            Node* nextNode=curr->next;
+            newNode->next=nextNode;
+            curr->next=newNode;
             curr=curr->next->next;
         }
-              
+        
         //part2: change random pointers
         curr=head;
         while(curr)
@@ -46,22 +46,22 @@ Node* copyRandomList(Node* head) {
             {
                 curr->next->random=curr->random->next;
             }
-            curr=curr->next->next;
+            curr=curr->next->next;            
         }
-               
-        //part3: separate lists
-        Node* new_head=new Node(INT_MIN);
-        Node* new_curr=new_head;
+        
+        //part3: separate list
+        Node* newHead=new Node(INT_MIN);
+        Node* newCurr=newHead;
         Node* fast;
         curr=head;
         while(curr)
         {
             fast=curr->next->next;
-            new_curr->next=curr->next;
+            newCurr->next=curr->next;
             curr->next=fast;
-            new_curr=new_curr->next;
+            newCurr=newCurr->next;
             curr=fast;
         }
         
-        return new_head->next;
+        return newHead->next;
     }
