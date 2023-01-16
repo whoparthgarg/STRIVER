@@ -27,6 +27,7 @@ bool isSorted(vector<int> nums)
         }
     }
     
+    //commit for vedansh
     return true;
 }
 bool isValidBST(TreeNode* root) {
